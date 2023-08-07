@@ -6,21 +6,24 @@ i18n.use(initReactI18next).init({
     en: {
       translations: {
         'Sign Up': 'Sign Up',
+        'Sign In': 'Sign In',
         'Password mismatch': 'Password mismatch',
         Username: 'Username',
         'Display Name': 'Display Name',
         Password: 'Password',
-        'Password Repeat': 'Password Repeat'
+        'Password Repeat': 'Password Repeat',
+        Login: 'Login'
       }
     },
     tr: {
       translations: {
-        'Sign Up': 'Kayıt Ol',
+        'Sign In': 'Giriş Yap',
         'Password mismatch': 'Aynı şifreyi giriniz',
         Username: 'Kullanıcı Adı',
         'Display Name': 'Tercih Edilen İsim',
         Password: 'Şifre',
-        'Password Repeat': 'Şifreyi Tekrarla'
+        'Password Repeat': 'Şifreyi Tekrarla',
+        Login: 'Giriş Yap'
       }
     }
   },
