@@ -56,8 +56,6 @@ class UserSignupPage extends React.Component {
     this.setState({ pendingApiCall: false });
   };
 
-  
-
   render() {
     const { pendingApiCall, errors } = this.state;
     const { username, displayName, password, passwordRepeat } = errors;
@@ -75,7 +73,6 @@ class UserSignupPage extends React.Component {
               {pendingApiCall && <span className="spinner-border spinner-border-sm"></span>} {t('Sign Up')}
             </button>
           </div>
-          
         </form>
       </div>
     );
