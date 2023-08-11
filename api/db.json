@@ -1,0 +1,33 @@
+{
+	"products": [
+	 {
+		"id": 1,
+		"categoryId": 2,
+		"productName": "Chai",
+		"quantityPerUnit": "48 - 6 oz jars",
+		"unitPrice": "23",
+		"unitsInStock":53
+	},
+	{
+		"id": 2,
+		"categoryId": 1,
+		"productName": "Chang",
+		"quantityPerUnit": "24 - 12 oz bottles",
+		"unitPrice": "21",
+		"unitsInStock":17
+	}
+     ],
+	"categories": [
+		{
+		"id": 1,
+		"categoryName": "Beverages",
+		"seoUr1": "beverages"
+		},
+		{
+		"id": 2,
+		"categoryName": "Condiments",
+		"seoUr1": "condiments"
+		}
+
+     ]
+}
