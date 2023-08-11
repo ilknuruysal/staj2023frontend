@@ -13,8 +13,13 @@ import LanguageSelector from "./components/LanguageSelector";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+// Sign Up Page' e girmek için div içindeki ilk element UserSignupPage yapılmalı
+// Login' e girmek için div içindeki ilk element LoginPage yapılmalı
+// Product sayfası görüntülenen alt kısımdaki kod comment içine alınır.
+
 // ReactDOM.render(
 //   <div>
+// Suan Sign Up Page görüntülenir.
 //     <UserSignupPage />
 //     <LanguageSelector />
 //   </div>,
@@ -25,6 +30,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 //The product page
 
+//Product Sayfası görüntülenir
+//Sign Up veya Login'e girmek için burayı comment'leyip üst kısmın commentlerini kaldırın.
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

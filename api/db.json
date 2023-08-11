@@ -3,30 +3,138 @@
 	 {
 		"id": 1,
 		"categoryId": 2,
-		"productName": "Chai",
-		"quantityPerUnit": "48 - 6 oz jars",
-		"unitPrice": "23",
+		"productName": "Iphone SE",
+		"quantityPerUnit": "Siyah",
+		"unitPrice": "23.000",
 		"unitsInStock":53
 	},
 	{
 		"id": 2,
 		"categoryId": 1,
-		"productName": "Chang",
-		"quantityPerUnit": "24 - 12 oz bottles",
-		"unitPrice": "21",
+		"productName": "Macbook Pro 14\"",
+		"quantityPerUnit": "Uzay Grisi",
+		"unitPrice": "54.000",
 		"unitsInStock":17
+	},
+	{
+		"id": 3,
+		"categoryId": 2,
+		"productName": "Samsung Galaxy S23 Ultra",
+		"quantityPerUnit": "Siyah",
+		"unitPrice": "65.9999",
+		"unitsInStock":16
+	},
+	{
+		"id": 4,
+		"categoryId": 1,
+		"productName": "Razer Blade 16",
+		"quantityPerUnit": "Siyah-Yeşil",
+		"unitPrice": "116.310",
+		"unitsInStock":8
+	},
+	{
+		"id": 5,
+		"categoryId": 1,
+		"productName": "Asus ROG Zephyrus G14",
+		"quantityPerUnit": "Beyaz",
+		"unitPrice": "32.450",
+		"unitsInStock":29
+	},
+	{
+		"id": 6,
+		"categoryId": 2,
+		"productName": "Xiaomi 13",
+		"quantityPerUnit": "Beyaz",
+		"unitPrice": "39.999",
+		"unitsInStock":53
+	},
+	{
+		"id": 7,
+		"categoryId": 4,
+		"productName": "Samsung Galaxy Tab S7 FE",
+		"quantityPerUnit": "Gri",
+		"unitPrice": "23.000",
+		"unitsInStock":96
+	},
+	{
+		"id": 8,
+		"categoryId": 6,
+		"productName": "Razor Blackwidov V3",
+		"quantityPerUnit": "Siyah",
+		"unitPrice": "1.849",
+		"unitsInStock":57
+	},
+	{
+		"id": 9,
+		"categoryId": 4,
+		"productName": "Ipad Mini",
+		"quantityPerUnit": "Beyaz",
+		"unitPrice": "12.449",
+		"unitsInStock":34
+	},
+	{
+		"id": 10,
+		"categoryId": 6,
+		"productName": "Apple Airpods 3. Nesil",
+		"quantityPerUnit": "Beyaz",
+		"unitPrice": "4.899",
+		"unitsInStock":123
+	},
+	{
+		"id": 11,
+		"categoryId": 6,
+		"productName": "Asus ROG Strix Scope Rx",
+		"quantityPerUnit": "Siyah",
+		"unitPrice": "4.299",
+		"unitsInStock":84
+	},
+	{
+		"id": 12,
+		"categoryId": 3,
+		"productName": "Marshall Major IV",
+		"quantityPerUnit": "Kahverengi",
+		"unitPrice": "4.159",
+		"unitsInStock":106
+	},
+	{
+		"id": 13,
+		"categoryId": 3,
+		"productName": "JBL Tune 500",
+		"quantityPerUnit": "Mavi",
+		"unitPrice": "909",
+		"unitsInStock":138
 	}
      ],
 	"categories": [
 		{
 		"id": 1,
-		"categoryName": "Beverages",
-		"seoUr1": "beverages"
+		"categoryName": "Laptop",
+		"seoUr1": "laptop"
 		},
 		{
 		"id": 2,
-		"categoryName": "Condiments",
-		"seoUr1": "condiments"
+		"categoryName": "Cep Telefonu",
+		"seoUr1": "Cep Telefonu"
+		},
+		{
+		"id": 3,
+		"categoryName": "Kulaklık",
+		"seoUr1": "kulaklık"
+		},
+		{
+		"id": 4,
+		"categoryName": "Tablet",
+		"seoUr1": "tablet"
+		},
+		{
+		"id": 5,
+		"categoryName": "Mouse",
+		"seoUr1": "mouse"
+		},
+		{
+		"id": 6,
+		"categoryName": "Klavye",
+		"seoUr1": "klavye"
 		}
 
      ]

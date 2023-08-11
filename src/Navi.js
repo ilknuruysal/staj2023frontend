@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState, Component } from "react";
 import App from "./App";
 import {
   Collapse,
@@ -13,7 +13,7 @@ import {
   DropdownMenu,
   DropdownItem,
   NavbarText,
-} from 'reactstrap';
+} from "reactstrap";
 
 function Navi(args) {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,9 +31,7 @@ function Navi(args) {
               <NavLink href="/components/">Components</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
+              <NavLink href="https://www.google.com/">Google-Link</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
@@ -47,7 +45,7 @@ function Navi(args) {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+          <NavbarText></NavbarText>
         </Collapse>
       </Navbar>
     </div>

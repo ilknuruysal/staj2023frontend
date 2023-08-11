@@ -13,10 +13,10 @@ export default class ProductList extends Component {
           <thead>
             <tr>
               <th>#</th>
-              <th>Product Name</th>
-              <th>Unit Price</th>
-              <th>Quantity Per Unit</th>
-              <th>Units In Stock</th>
+              <th>Ürün Adı</th>
+              <th>Fiyat</th>
+              <th>Renk</th>
+              <th>Stok Durumu</th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +32,7 @@ export default class ProductList extends Component {
                     onClick={() => this.props.addToCart(product)}
                     color="info"
                   >
-                    add
+                    Sepete Ekle
                   </Button>
                 </td>
               </tr>
