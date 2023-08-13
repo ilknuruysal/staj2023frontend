@@ -6,6 +6,7 @@ import { Col, Container, Row } from 'reactstrap';
 
 export default class MainPage extends Component
 {
+  //test
   state =
   {
     currentCategory : ""
