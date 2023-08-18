@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 // import './index.css';
 // import App from './App';
 import './bootstrap-override.scss';
-//import SignUpPage from './pages/SignUpPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import SignUpPage from './pages/SignUpPage';
 import MainPage from './MainPage';
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

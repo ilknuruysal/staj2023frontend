@@ -1,8 +1,8 @@
 import React from 'react';
-import {signUp} from '../api/apiCalls';
+import { signUp } from '../api/apiCalls';
 
 // App.js teki jsx bloğu yerine class componenti oluşturduk
-class SignUpPage extends React.Component //inheritance
+class SignUpPage extends React.Component // inheritance
 {
     // Uygulamanın durumunu güncel tutmak için kullanılır, class component özelliğidir
     state = 
@@ -17,13 +17,9 @@ class SignUpPage extends React.Component //inheritance
         errors: {}
     };
     
-    
     /*
-    Fonk. tanımını bu şekilde yapmak yerine ayrı bir yerde class a özel oluşturuyoruz
-        <input onChange= {function(event) 
-        {
-            console.log(event.target.value);
-        }}/>
+    Fonk. tanımını bu şekilde yapmak yerine ayrı bir yerde bu class a özel oluşturuyoruz
+        <input onChange= {function(event) { console.log(event.target.value); }}/>
     */
     onChange = event => 
     { 
@@ -34,8 +30,8 @@ class SignUpPage extends React.Component //inheritance
             const value = event.target.value;
             const name = event.target.name;
         */
-        // Object Destructuring
-        const {name,value} = event.target;
+        
+        const {name,value} = event.target; // Object Destructuring
 
         // setState, React.Component tan gelir 
         // State bilgisi değişimini haber verir ve render methodunu tekrar çağırır
@@ -52,14 +48,14 @@ class SignUpPage extends React.Component //inheritance
 
         const body = 
         { 
-            username, // Eğer json objesindeki key ve value aynı ise birini yazarız. Yani "username: username" yerine böyle yaptık
+            username, // Eğer json objesinde key ve value aynı ise birini yazarız. Yani "username: username" yerine böyle yaptık
             display_name,
             password
         };
 
         this.setState( {pendingApiCall : true} );
 
-        // then başarı durumunda yani 200 de, catch 400 500 lü kodlarda çalışır ve bu kısıma "promise" denir
+        // then başarı durumunda yani 200de, catch 400 500lü kodlarda çalışır ve bu olaya "promise" denir
         signUp(body)
             .then ( response => 
             { 
@@ -81,11 +77,10 @@ class SignUpPage extends React.Component //inheritance
         */
     };
     
-    
     // Her class componenti mutlaka bir render methodunu override etmelidir
     render() 
     {
-        const {pendingApiCall , errors} = this.state;
+        const {pendingApiCall, errors} = this.state;
         const {username} = errors;
 
         return(
@@ -116,9 +111,7 @@ class SignUpPage extends React.Component //inheritance
                     </div>
 
                     <div className ='text-center'>
-                        <button className ='btn btn-primary' 
-                                onClick = {this.onClickSignUp}
-                                disabled = {pendingApiCall}> {/*primary ile kutular etrafı mavilik gelir*/}
+                        <button className ='btn btn-primary' onClick = {this.onClickSignUp} disabled = {pendingApiCall}> {/*primary ile kutular etrafı mavilik gelir*/}
                                 {pendingApiCall ? <span className ='spinner-grow spinner-grow-sm'></span> : 'Sign Up'}
                         </button> 
                     </div>
@@ -128,4 +121,4 @@ class SignUpPage extends React.Component //inheritance
     }
 }
 
-export default SignUpPage; //index.html e veri gödnderebilmek için
+export default SignUpPage; // index.html e veri gödnderebilmek için

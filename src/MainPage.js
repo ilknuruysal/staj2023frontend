@@ -1,45 +1,93 @@
 import React, { Component } from 'react'
 import NavigationBar from './mainpage_components/NavigationBar';
-import Categories from './mainpage_components/Categories';
-import Products from './mainpage_components/Products';
+import ProductList from './mainpage_components/ProductList';
+import ProductDescription from './mainpage_components/ProductDescription';
 import { Col, Container, Row } from 'reactstrap';
 
 export default class MainPage extends Component
 {
-  //test
   state =
   {
-    currentCategory : ""
+    currentProductType : "",
+    productDescriptions: [],
+    cart: []
   }
-  // Bu bir arrow function yani aslında state gibi bir değişkendir. "()" ifadesi onun bir fonksiyon olduğunu gösterir
-  changeCategory = (category) => 
+
+  //#region /********** Functions **********/
+
+  componentDidMount()
   {
-    this.setState({currentCategory : category.categoryName})
+    this.getProductDescriptions(); // Component yerleşti, şimdi ürün tanımlarını doldur anlamına gelir
   }
-  
+
+  // Bu bir arrow function yani aslında state gibi bir değişkendir. "()" ifadesi onun bir fonksiyon olduğunu gösterir
+  changeProductType = (product) => 
+  {
+    this.setState( {currentProductType : product.productName} );
+    //console.log(product);
+    this.getProductDescriptions(product.id);
+  };
+
+  getProductDescriptions = (productTypeId) =>
+  {
+    let url = "http://localhost:3000/productsAndDescriptions";
+
+    if (productTypeId) // Eğer id tanımlanmışsa anlamına gelir
+    {
+      url += "?productTypeId=" + productTypeId;
+    }
+
+    fetch(url)
+      .then(response => response.json()) // fetchle çağrılan datadan gelen responsu json a döndürür
+      .then(data => this.setState( {productDescriptions : data} )); 
+  };
+
+  addToCart = (desiredProduct) =>
+  {
+    let newCart = this.state.cart;
+    var addedItem = newCart.find(c => c.desiredProduct.id === desiredProduct.id);
+    // Her bir cart item için ilgili cart item ın id si, bizim gönderdiğimiz id ye eşit mi bakıyor
+
+    if(addedItem)
+    {
+      addedItem.quatity += 1; // Aynı üründen tekrar eklenebilsin istersek bunu sileriz
+    }
+    else
+    {
+      newCart.push( {desiredProduct : desiredProduct , quantity : 1} ); // Listede o eleman yoksa ekler
+    }
+
+    this.setState( {cart : newCart} );
+  };
+
+  //#endregion
+
   render()
   {
-    let categoryInfo = {title : "Categories"} // obj. notasyon olduğu için 2 nokta var
-    let productInfo = {title : "Products"} // yeni eklenecek özellikleri {} içine ekleriz
+    let productListInfo = {title : "Products"} // Obj. notasyon olduğu için 2 nokta var
+    let productDescInfo = {title : "Product Description"} // Yeni eklenecek özellikleri {} içine ekleriz
 
     return (
-      <div> 
-        <Container>
-          <Row>
-            <NavigationBar />
-          </Row>
+      
+      // Container geldiği için dışarıdaki div kapatıldı
+      <Container> 
+        <NavigationBar cart = {this.state.cart}/>
   
-          <Row>
-            <Col xs="3">
-              <Categories info = {categoryInfo} changeCategory = {this.changeCategory} currentCat = {this.state.currentCategory}/>
-            </Col>
-            
-            <Col xs="9">
-              <Products info = {productInfo} currentCat = {this.state.currentCategory}/> 
-            </Col>  
-          </Row> 
-        </Container>
-      </div> // container geldiği için div kapatılabilirdi
+        <Row>
+          <Col xs ='2'>
+            <ProductList info = {productListInfo} 
+                         changeProductType = {this.changeProductType}
+                         currentProductType = {this.state.currentProductType}/>
+          </Col>
+          
+          <Col xs ='10'>
+            <ProductDescription info = {productDescInfo} 
+                                currentProductType = {this.state.currentProductType} 
+                                descriptions = {this.state.productDescriptions}
+                                addToCart = {this.addToCart}/> 
+          </Col>  
+        </Row> 
+      </Container>
     );
   }
 }
