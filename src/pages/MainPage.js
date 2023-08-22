@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import NavigationBar from './mainpage_components/NavigationBar';
-import ProductList from './mainpage_components/ProductList';
-import ProductDescription from './mainpage_components/ProductDescription';
+import NavigationBar from '../page_components/mainpage_components/NavigationBar';
+import ProductList from '../page_components/mainpage_components/ProductList';
+import ProductDescription from '../page_components/mainpage_components/ProductDescription';
 import { Col, Container, Row } from 'reactstrap';
 
 export default class MainPage extends Component

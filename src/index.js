@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client';
 import './bootstrap-override.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SignUpPage from './pages/SignUpPage';
-// import MainPage from './MainPage';
+// import MainPage from './pages/MainPage';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

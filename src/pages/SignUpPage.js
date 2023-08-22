@@ -1,6 +1,6 @@
 import React from 'react';
 import { signUp } from '../api/apiCalls';
-import Input from '../signuppage_components/input';
+import Input from '../page_components/signuppage_components/input';
 
 // App.js teki jsx bloğu yerine class componenti oluşturduk
 class SignUpPage extends React.Component // inheritance
