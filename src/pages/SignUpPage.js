@@ -1,5 +1,6 @@
 import React from 'react';
 import { signUp } from '../api/apiCalls';
+import Input from '../signuppage_components/input';
 
 // App.js teki jsx bloğu yerine class componenti oluşturduk
 class SignUpPage extends React.Component // inheritance
@@ -13,8 +14,7 @@ class SignUpPage extends React.Component // inheritance
         password_repeat: null,
 
         pendingApiCall: false, // Butona tıklanınca disabled olacak değer
-
-        errors: {}
+        valErrors: {}
     };
     
     /*
@@ -33,14 +33,27 @@ class SignUpPage extends React.Component // inheritance
         
         const {name,value} = event.target; // Object Destructuring
 
+        const valErrors = {...this.state.valErrors}; // Objenin kopyasını alır --> Spread Operator
+        valErrors[name] = undefined // Kutu doldurulmaya başlanınca uyarı yazısı silinsin diye yapılır
+
+        if(name === 'password' || name === 'password_repeat')
+        {
+            if(name === 'password' && value !== this.state.password_repeat)
+                valErrors.password_repeat = 'Password mismatch';
+            else if(name === 'password_repeat' && value !== this.state.password)
+                valErrors.password_repeat = 'Password mismatch';
+            else
+                valErrors.password_repeat = undefined;
+        }
+
+        this.setState( {[name] : value , valErrors} ); 
         // setState, React.Component tan gelir 
         // State bilgisi değişimini haber verir ve render methodunu tekrar çağırır
-        this.setState( {[name] : value} ); 
-            
+
         // console.log(this.state)
     };
 
-    onClickSignUp = event =>
+    onClickSignUp = async event =>
     {
         event.preventDefault(); // Default olarak formu bir yere göndermesini önler
 
@@ -55,6 +68,21 @@ class SignUpPage extends React.Component // inheritance
 
         this.setState( {pendingApiCall : true} );
 
+        try
+        {
+            const response = await signUp(body);
+        }
+        catch (error) 
+        {
+            if(error.response.data.validationErrors) // 500 hatası alınca program durmasın diye bu kısmı ekledik
+            {
+                this.setState( {valErrors : error.response.data.validationErrors} );
+            }
+        }
+        this.setState( {pendingApiCall : false} ); 
+
+        /* Yukarıdaki kısım async olmadan da yapılabilir. "onClickSignUp = event" şeklinde değiştiririz ve aşağıdaki bloğu yazarız
+
         // then başarı durumunda yani 200de, catch 400 500lü kodlarda çalışır ve bu olaya "promise" denir
         signUp(body)
             .then ( response => 
@@ -63,25 +91,17 @@ class SignUpPage extends React.Component // inheritance
             })
             .catch ( error => 
             {
-                this.setState( {errors : error.response.data.validationErrors} );
+                this.setState( {valErrors : error.response.data.validationErrors} );
                 this.setState( {pendingApiCall : false} );
             })
-        /* Yukarıdaki kısım async ile de yapılabilir. "onClickSignUp = async event" şeklinde değiştiririz ve aşağıdaki bloğu yazarız
-        try
-        {
-            const response = await signUp(body);
-        }
-        catch (error) {}
-        
-        this.setState( {pendingApiCall : false}); 
         */
     };
     
     // Her class componenti mutlaka bir render methodunu override etmelidir
     render() 
     {
-        const {pendingApiCall, errors} = this.state;
-        const {username} = errors;
+        const {pendingApiCall, valErrors} = this.state;
+        const {username , display_name , password , password_repeat} = valErrors;
 
         return(
             <div className ='container'> {/*sağdan soldan boşluklu bir yapı elde ederiz*/}
@@ -90,28 +110,13 @@ class SignUpPage extends React.Component // inheritance
                         <h1 className ='text-center'>Sign Up</h1>
                     </div>
 
-                    <div className ='form-group'>
-                        <label>Username</label>
-                        <input className ='form-control' name ='username' onChange = {this.onChange}/>
-                    </div>
-
-                    <div className ='form-group'>
-                        <label>Display Name</label>
-                        <input className ='form-control' name ='display_name' onChange = {this.onChange}/>
-                    </div>
-
-                    <div className ='form-group'>
-                        <label>Password</label>
-                        <input className ='form-control' name ='password' type ='password' onChange = {this.onChange}/>
-                    </div>
-
-                    <div className ='form-group'>
-                        <label>Password Repeat</label>
-                        <input className ='form-control' name ='password_repeat' type ='password' onChange = {this.onChange}/>
-                    </div>
+                    <Input label ='Username' name = 'username' error = {username} onChange = {this.onChange}/>
+                    <Input label ='Display Name' name = 'display_name' error = {display_name} onChange = {this.onChange}/>
+                    <Input label ='Password' name = 'password' error = {password} type ='password' onChange = {this.onChange}/>
+                    <Input label ='Password Repeat' name = 'password_repeat' error = {password_repeat} type ='password' onChange = {this.onChange}/>
 
                     <div className ='text-center'>
-                        <button className ='btn btn-primary' onClick = {this.onClickSignUp} disabled = {pendingApiCall}> {/*primary ile kutular etrafı mavilik gelir*/}
+                        <button className ='btn btn-primary' onClick = {this.onClickSignUp} disabled = {pendingApiCall || password_repeat !== undefined}> {/*primary ile kutular etrafı mavilik gelir*/}
                                 {pendingApiCall ? <span className ='spinner-grow spinner-grow-sm'></span> : 'Sign Up'}
                         </button> 
                     </div>
