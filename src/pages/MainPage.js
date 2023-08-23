@@ -38,7 +38,7 @@ export default class MainPage extends Component
     }
 
     fetch(url)
-      .then(response => response.json()) // fetchle çağrılan datadan gelen responsu json a döndürür
+      .then(response => response.json()) // fetch le çağrılan datadan gelen responsu json a döndürür
       .then(data => this.setState( {productDescriptions : data} )); 
   };
 

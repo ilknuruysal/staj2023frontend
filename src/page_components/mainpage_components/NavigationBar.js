@@ -1,5 +1,5 @@
-import React, { Component} from 'react' 
-// Optional importlar {} içinde alınır, default direkt alınır
+import React, { Component } from 'react' 
+// Optional import lar {} içinde alınır, default direkt alınır
 // Sadece bir tane export default olur fakat optional olanlardan birden fazla export olabilir
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, UncontrolledDropdown, 
          DropdownToggle, DropdownMenu, DropdownItem,  NavbarText, Placeholder } from 'reactstrap';
@@ -21,17 +21,16 @@ export default class NavigationBar extends Component
 
   toggle() 
   {
-    this.setState( { isOpen : !this.state.isOpen } );
+    this.setState( {isOpen : !this.state.isOpen} );
   }
   
   render() 
   {
-    return (
+    return(
       <div>
         <Placeholder color ='danger' xs = {12} size ='sm'/>
 
         <Navbar color ='info'>
-        
           <NavbarText style = {{fontSize : '1.3rem'}}>
             <i className ='pi pi-shopping-cart' style = {{ color : '#8a2be2', fontSize : '2.0rem'}}/>
             <b>{this.props.cart.length}</b> products in the cart
@@ -48,7 +47,7 @@ export default class NavigationBar extends Component
 
                 <DropdownMenu right style = {{textAlign : 'center'}}>
                   <DropdownItem>Show My Cart <i className ='pi pi-shopping-cart'/></DropdownItem>
-                  <DropdownItem divider />
+                  <DropdownItem divider/>
                   <DropdownItem>Log Out <i className ='pi pi-sign-out'/></DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

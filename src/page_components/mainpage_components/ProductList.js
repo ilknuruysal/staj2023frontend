@@ -6,7 +6,7 @@ export default class ProductList extends Component
   /*
   constructor(props)
   {
-    super(props); // propsu componente gönderir, super extend kısmına gider
+    super(props); // props u component e gönderir, super extend kısmına gider
     this.state = {}
   }
   */
@@ -31,21 +31,21 @@ export default class ProductList extends Component
   getProductList = () =>
   {
     fetch("http://localhost:3000/productList")
-      .then(response => response.json()) // fetchle çağrılan datadan gelen responsu json a döndürür
-      .then(data => this.setState( {products : data} )); // Gelen json datasındaki products değerini data yapıyoruz
-      // Şimdi yukarıdaki products arrayini boş oluşturabiliriz
+      .then(response => response.json()) // fetch le çağrılan datadan gelen response u json a döndürür
+      .then(data => this.setState( {products : data} )); // Gelen json datasındaki products değerini data yapıyor
+      // Şimdi yukarıdaki products array i boş kalabilir
   }
 
   render() 
   {
-    return (
+    return(
       <div>
         <h2>{this.props.info.title}</h2>
 
         <ListGroup>
           {
-            // product denen şey arrayin her bir satırına denk gelen ve burada oluşturduğumuz değişkendir
-            // Her bir eleman diğerinden ayrılsın diye döngüler yapınca key eklememiz gerekir
+            // product denen şey array in her bir satırına denk gelen ve burada oluşturulan değişkendir
+            // Her bir eleman diğerinden ayrılsın diye döngüler yapınca key eklemek gerekir
             this.state.products.map (product => (
               <ListGroupItem key = {product.id} onClick = {() => this.props.changeProductType(product)}
                              active = {product.productName === this.props.currentProductType ? true : false}>
@@ -54,7 +54,7 @@ export default class ProductList extends Component
           }
         </ListGroup>
 
-        {/* <h4>{this.props.currentProductType}</h4> --> Bu kısmı artık yoruma alabiliriz*/}  
+        { /*<h4>{this.props.currentProductType}</h4> --> Bu kısmı artık yoruma alınabilir*/ }  
       </div>
     );
   }

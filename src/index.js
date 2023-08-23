@@ -4,14 +4,13 @@ import ReactDOM from 'react-dom/client';
 // import App from './App';
 import './bootstrap-override.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SignUpPage from './pages/SignUpPage';
-// import MainPage from './pages/MainPage';
+import Application from './Application';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SignUpPage />
+    <Application/>
   </React.StrictMode>
 );
 

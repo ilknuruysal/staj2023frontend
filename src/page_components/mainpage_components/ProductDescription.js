@@ -5,7 +5,7 @@ export default class ProductDescription extends Component
 {
   render() 
   {
-    return (
+    return(
       <div>
         <h2>{this.props.info.title} {"-->"} {this.props.currentProductType}</h2>
 
