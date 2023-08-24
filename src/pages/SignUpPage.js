@@ -1,6 +1,8 @@
 import React from 'react';
-import { signUp } from '../api/apiCalls';
-import Input from '../page_components/userpage_components/input';
+import { signUp } from '../api/ApiCalls';
+import { withApiProgress } from '../api/ApiProgress';
+import Input from '../page_components/userpage_components/Input';
+import ProgressButton from '../page_components/userpage_components/ProgressButton';
 
 // App.js teki jsx bloğu yerine class componenti oluşturuldu
 class SignUpPage extends React.Component // inheritance
@@ -13,8 +15,9 @@ class SignUpPage extends React.Component // inheritance
         password: null,
         password_repeat: null,
 
-        pendingApiCall: false, // Butona tıklanınca disabled olacak değer
         valErrors: {}
+
+        // pendingApiCall: false, --> Butona tıklanınca disabled olacak değer, ApiProgress ten alınıyor
     };
     
     /*
@@ -66,8 +69,6 @@ class SignUpPage extends React.Component // inheritance
             password
         };
 
-        this.setState( {pendingApiCall : true} );
-
         try
         {
             const response = await signUp(body);
@@ -79,7 +80,6 @@ class SignUpPage extends React.Component // inheritance
                 this.setState( {valErrors : error.response.data.validationErrors} );
             }
         }
-        this.setState( {pendingApiCall : false} ); 
 
         /* Yukarıdaki kısım async olmadan da yapılabilir. "onClickSignUp = event" şeklinde değiştirilir ve aşağıdaki blok yazılır
 
@@ -100,7 +100,8 @@ class SignUpPage extends React.Component // inheritance
     // Her class componenti mutlaka bir render methodunu override etmelidir
     render() 
     {
-        const {pendingApiCall , valErrors} = this.state;
+        const {pendingApiCall} = this.props;
+        const {valErrors} = this.state;
         const {username , display_name , password , password_repeat} = valErrors;
 
         return(
@@ -116,9 +117,10 @@ class SignUpPage extends React.Component // inheritance
                     <Input label ='Password Repeat' name ='password_repeat' error = {password_repeat} type ='password' onChange = {this.onChange}/>
 
                     <div className ='text-center'>
-                        <button className ='btn btn-primary' onClick = {this.onClickSignUp} disabled = {pendingApiCall || password_repeat !== undefined}> { /*primary ile kutular etrafı mavilik gelir*/ }
-                                {pendingApiCall ? <span className ='spinner-grow spinner-grow-sm'></span> : 'Sign Up'}
-                        </button> 
+                        <ProgressButton onClick = {this.onClickSignUp}
+                                        disabled = {pendingApiCall || password_repeat !== undefined}
+                                        pendingApiCall = {pendingApiCall}
+                                        text = 'Sign Up'/>
                     </div>
                 </form>
             </div>
@@ -126,4 +128,6 @@ class SignUpPage extends React.Component // inheritance
     }
 }
 
-export default SignUpPage; // index.html e veri gödnderebilmek için
+const SignUpPageWithApiProgress = withApiProgress(SignUpPage , "/api/1.0/users");
+
+export default SignUpPageWithApiProgress; // index.html e veri gönderebilmek için

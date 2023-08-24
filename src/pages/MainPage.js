@@ -13,8 +13,6 @@ export default class MainPage extends Component
     cart: []
   }
 
-  //#region /********** Functions **********/
-
   componentDidMount()
   {
     this.getProductDescriptions(); // Component yerleşti, şimdi ürün tanımlarını doldur anlamına gelir
@@ -59,8 +57,6 @@ export default class MainPage extends Component
 
     this.setState( {cart : newCart} );
   };
-
-  //#endregion
 
   render()
   {
