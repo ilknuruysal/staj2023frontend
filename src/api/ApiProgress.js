@@ -14,14 +14,14 @@ export function withApiProgress(WrappedComponent , apiPath)
 
         componentDidMount()
         {
-            axios.interceptors.request.use((request) =>
+            this.requestInterceptor = axios.interceptors.request.use((request) =>
             {
                 this.updateApiCallFor(request.url , true);
                 return request; // axios requesti devam ettirsin diye yapılır
             });
 
             // 2 tane callback function ister
-            axios.interceptors.response.use(
+            this.responseInterceptor = axios.interceptors.response.use(
             (response) =>
             {
                 this.updateApiCallFor(response.config.url , false);
@@ -33,6 +33,14 @@ export function withApiProgress(WrappedComponent , apiPath)
                 throw error;
             });
         };
+        
+        componentWillUnmount()
+        {
+            axios.interceptors.request.eject(this.requestInterceptor); 
+            axios.interceptors.response.eject(this.responseInterceptor);
+            // eject, silinecek interceptor id si ister, o yüzden yukarıdakiler this diyerek bir şeye eşitlenir ve o kullanılır
+            // use kullanımı ile aslında number döner ve o kullanılmış olur
+        }
 
         updateApiCallFor = (url , inProgress) =>
         {

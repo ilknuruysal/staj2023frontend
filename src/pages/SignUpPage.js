@@ -71,7 +71,9 @@ class SignUpPage extends React.Component // inheritance
 
         try
         {
-            const response = await signUp(body);
+            // const response = await signUp(body);
+            await signUp(body);
+            this.props.history.push("/mainpage");
         }
         catch (error) 
         {

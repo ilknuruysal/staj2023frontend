@@ -35,7 +35,8 @@ class LoginPage extends React.Component
 
       try
       {
-        await login(credentials); // Direkt state olarakta verilebilridi ama sonraki değişikliklerde bu mantıklı olmaz
+        await login(credentials); // Direkt state olarakta verilebilirdi ama sonraki değişikliklerde bu mantıklı olmaz
+        this.props.history.push("/mainpage");
       }
       catch (apiError) 
       {
