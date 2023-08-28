@@ -33,6 +33,8 @@ export default class ProductDescription extends Component
                   <td>{productDesc.colour}</td>
                   <td>{productDesc.productionDate}</td>
                   <td><Button color ='success' onClick = {() => this.props.addToCart(productDesc)}>Add To Cart</Button></td>
+                  <td><Button color ='danger' onClick = {() => this.props.delete(productDesc)}>Delete</Button></td>
+                  <td><Button color ='info' onClick = {() => this.props.update(productDesc)}>Update</Button></td>
                 </tr>))
             }
           </tbody>

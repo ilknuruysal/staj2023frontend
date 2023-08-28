@@ -3,6 +3,7 @@ import { login } from '../api/ApiCalls';
 import { withApiProgress } from '../api/ApiProgress';
 import Input from '../page_components/userpage_components/Input';
 import ProgressButton from '../page_components/userpage_components/ProgressButton';
+import { withRouter } from 'react-router-dom';
 
 class LoginPage extends React.Component
 {
@@ -77,4 +78,8 @@ class LoginPage extends React.Component
   }
 }
 
-export default withApiProgress(LoginPage , "/api/1.0/auth");
+//export default withApiProgress(LoginPage , "/api/1.0/auth");
+
+const LogInPageWithApiProgress = withApiProgress(LoginPage , "/api/1.0/auth");
+
+export default withRouter(LogInPageWithApiProgress);

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // Optional import lar {} içinde alınır, default direkt alınır
 // Sadece bir tane export default olur fakat optional olanlardan birden fazla export olabilir
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, UncontrolledDropdown, 
-         DropdownToggle, DropdownMenu, DropdownItem,  NavbarText, Placeholder } from 'reactstrap';
+         DropdownToggle, DropdownMenu, DropdownItem,  NavbarText, Placeholder, Button } from 'reactstrap';
 import 'primeicons/primeicons.css';
 
 export default class NavigationBar extends Component 
@@ -38,6 +38,8 @@ export default class NavigationBar extends Component
 
           <NavbarBrand style = {{color : '#8a2be2', fontSize : '3.0rem'}}><b>TECHNOLOGY STORE</b></NavbarBrand>
 
+          <Button color ='warning' onClick={this.onClickAddNewProduct}>Add New Product</Button> 
+
           <NavbarToggler onClick = {this.toggle}/>
 
           <Collapse isOpen = {this.state.isOpen} navbar>
@@ -46,6 +48,10 @@ export default class NavigationBar extends Component
                 <DropdownToggle nav caret style = {{textAlign : 'right'}}>Options</DropdownToggle>
 
                 <DropdownMenu right style = {{textAlign : 'center'}}>
+                  <DropdownItem>Registered Customer List <i className ='pi pi-list'/></DropdownItem>
+                  <DropdownItem divider/>
+                  <DropdownItem>Sales List Information <i className ='pi pi-info-circle'/></DropdownItem>
+                  <DropdownItem divider/>
                   <DropdownItem>Show My Cart <i className ='pi pi-shopping-cart'/></DropdownItem>
                   <DropdownItem divider/>
                   <DropdownItem>Log Out <i className ='pi pi-sign-out'/></DropdownItem>
