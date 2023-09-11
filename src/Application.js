@@ -6,6 +6,7 @@ import MainPage from "./MainPage";
 import Order from "./components/Order";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { CategoryFilterProvider } from "./components/CategoryFilterContext";
 import Main from "./pages/Main"; // Update the import for Main.js
 import { HashRouter, Route, Routes } from "react-router-dom";
 
@@ -20,7 +21,9 @@ function Application() {
             path="/mainPage"
             element={
               <Provider store={store}>
-                <MainPage />
+                <CategoryFilterProvider>
+                  <MainPage />
+                </CategoryFilterProvider>
               </Provider>
             }
           />

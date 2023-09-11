@@ -95,6 +95,7 @@ import Order from "./components/Order";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateTotals } from "./features/cart/cartSlice";
 import { useEffect } from "react";
+import { CategoryFilterProvider } from "./components/CategoryFilterContext";
 // import Modal from "./components/Modal";
 function MainPage() {
   const { cartItems } = useSelector((store) => store.cart);
@@ -107,6 +108,7 @@ function MainPage() {
   return (
     <main>
       {/* {isOpen && <Modal />} */}
+
       <Navi />
       <CartContainer />
       <Order />

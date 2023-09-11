@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import CategoryService from "../pages/CategoryService";
+import { useCategoryFilter } from "./CategoryFilterContext";
 import {
   Collapse,
   Navbar,
@@ -19,6 +20,7 @@ function Example(args) {
   const [isOpen, setIsOpen] = useState(false);
   const [categoryItems, setCategoryItems] = useState([]);
   const toggle = () => setIsOpen(!isOpen);
+  const { categoryFilter, setCategoryFilter } = useCategoryFilter();
 
   // useEffect(() => {
   //   const fetchCategories = async () => {
@@ -50,6 +52,8 @@ function Example(args) {
   }, []);
 
   const handleFilter = (id) => {
+    setCategoryFilter(id);
+    console.log(id);
     //pass the id value to the CartContainer and add filtering logic
     //by default make it list all products
   };
@@ -57,7 +61,7 @@ function Example(args) {
   return (
     <div>
       <Navbar {...args}>
-        <NavbarBrand className="nav-h3" href="/">
+        <NavbarBrand className="nav-h3" onClick={() => handleFilter(0)}>
           ANA SAYFA
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />

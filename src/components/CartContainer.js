@@ -1,12 +1,14 @@
 import CartItem from "./CartItem";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductService from "../pages/ProductService";
 import { updateCartItems, updateBag } from "../features/cart/cartSlice"; // Import the action
 import { placeOrder } from "./Order";
+import { useCategoryFilter } from "./CategoryFilterContext";
 const CartContainer = () => {
   const dispatch = useDispatch();
   const { total, amount, bag, cartItems } = useSelector((store) => store.cart);
+  // const { CategoryFilter } = useCategoryFilter();
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -31,6 +33,8 @@ const CartContainer = () => {
     fetchCartItems();
   }, [dispatch]);
 
+  const { categoryFilter } = useCategoryFilter();
+
   if (amount < 1) {
     return (
       <section className="cart">
@@ -48,9 +52,17 @@ const CartContainer = () => {
         <h2>Ürünler</h2>
       </header>
       <div>
-        {cartItems.map((item) => {
+        {/* {cartItems.map((item) => {
           return <CartItem key={item.id} {...item} />;
-        })}
+        })} */}
+        {cartItems
+          .filter(
+            (item) =>
+              categoryFilter === 0 || item.productCategoryID === categoryFilter
+          )
+          .map((item) => (
+            <CartItem key={item.id} {...item} />
+          ))}
       </div>
       <footer>
         <hr />
